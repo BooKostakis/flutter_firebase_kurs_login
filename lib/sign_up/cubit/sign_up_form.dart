@@ -16,20 +16,30 @@ class SignUpForm extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-              SnackBar(content: Text(state.errorMessage ?? 'Sign Up Failure')),
+              SnackBar(
+                  content: Text(state.errorMessage ?? 'Ошибка регистрации')),
             );
         }
       },
       child: Align(
-        alignment: const Alignment(0, -1 / 3),
+        alignment: const Alignment(0, -3 / 3),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Image.asset(
+              'assets/logo_full.png',
+              width: 280,
+            ),
+            const SizedBox(height: 30),
             _EmailInput(),
             const SizedBox(height: 8),
             _PasswordInput(),
             const SizedBox(height: 8),
             _ConfirmPasswordInput(),
+            const SizedBox(height: 8),
+            _ExchangeName(),
+            const SizedBox(height: 8),
+            _ExchangeAdress(),
             const SizedBox(height: 8),
             _SignUpButton(),
           ],
@@ -53,7 +63,7 @@ class _EmailInput extends StatelessWidget {
             labelText: 'email',
             helperText: '',
             errorText:
-                state.email.displayError != null ? 'invalid email' : null,
+                state.email.displayError != null ? 'Неверный email' : null,
           ),
         );
       },
@@ -73,10 +83,10 @@ class _PasswordInput extends StatelessWidget {
               context.read<SignUpCubit>().passwordChanged(password),
           obscureText: true,
           decoration: InputDecoration(
-            labelText: 'password',
+            labelText: 'Пароль',
             helperText: '',
             errorText:
-                state.password.displayError != null ? 'invalid password' : null,
+                state.password.displayError != null ? 'Неверный пароль' : null,
           ),
         );
       },
@@ -99,10 +109,10 @@ class _ConfirmPasswordInput extends StatelessWidget {
               .confirmedPasswordChanged(confirmPassword),
           obscureText: true,
           decoration: InputDecoration(
-            labelText: 'confirm password',
+            labelText: 'Подтвердите пароль',
             helperText: '',
             errorText: state.confirmedPassword.displayError != null
-                ? 'passwords do not match'
+                ? 'Пароли не совпадают'
                 : null,
           ),
         );
@@ -124,13 +134,54 @@ class _SignUpButton extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  backgroundColor: Colors.orangeAccent,
+                  backgroundColor: Color.fromARGB(255, 10, 135, 200),
                 ),
                 onPressed: state.isValid
                     ? () => context.read<SignUpCubit>().signUpFormSubmitted()
                     : null,
-                child: const Text('SIGN UP'),
+                child: const Text('РЕГИСТРАЦИЯ'),
               );
+      },
+    );
+  }
+}
+
+class _ExchangeName extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpCubit, SignUpState>(
+      buildWhen: (previous, current) => previous.email != current.email,
+      builder: (context, state) {
+        return TextField(
+          key: const Key('signUpForm_emailInput_textField'),
+          onChanged: (name) => context.read<SignUpCubit>().emailChanged(name),
+          keyboardType: TextInputType.name,
+          decoration: InputDecoration(
+            labelText: 'Укажите название обменного пункта',
+            helperText: '',
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _ExchangeAdress extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpCubit, SignUpState>(
+      buildWhen: (previous, current) => previous.email != current.email,
+      builder: (context, state) {
+        return TextField(
+          key: const Key('signUpForm_adressInput_textField'),
+          onChanged: (adress) =>
+              context.read<SignUpCubit>().emailChanged(adress),
+          keyboardType: TextInputType.streetAddress,
+          decoration: InputDecoration(
+            labelText: 'Укажите адрес обменного пункта',
+            helperText: '',
+          ),
+        );
       },
     );
   }

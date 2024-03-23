@@ -23,23 +23,23 @@ class SignUpWithEmailAndPasswordFailure implements Exception {
     switch (code) {
       case 'invalid-email':
         return const SignUpWithEmailAndPasswordFailure(
-          'Email is not valid or badly formatted.',
+          'Неверный email или пользователь не зарегистрирован',
         );
       case 'user-disabled':
         return const SignUpWithEmailAndPasswordFailure(
-          'This user has been disabled. Please contact support for help.',
+          'Этот пользователь отключен, пожалуйста, обратитесь в поддержку',
         );
-      case 'email-already-in-use':
+      case 'Этот email уже используется':
         return const SignUpWithEmailAndPasswordFailure(
-          'An account already exists for that email.',
+          'Этот email уже зарегистрирован',
         );
       case 'operation-not-allowed':
         return const SignUpWithEmailAndPasswordFailure(
-          'Operation is not allowed.  Please contact support.',
+          'Операция невозможна, пожалуйста, обратитесь в поддержку',
         );
       case 'weak-password':
         return const SignUpWithEmailAndPasswordFailure(
-          'Please enter a stronger password.',
+          'Пожалйста, введите более надежный пароль',
         );
       default:
         return const SignUpWithEmailAndPasswordFailure();
@@ -66,19 +66,19 @@ class LogInWithEmailAndPasswordFailure implements Exception {
     switch (code) {
       case 'invalid-email':
         return const LogInWithEmailAndPasswordFailure(
-          'Email is not valid or badly formatted.',
+          'Неверный email или пользователь не зарегистрирован',
         );
       case 'user-disabled':
         return const LogInWithEmailAndPasswordFailure(
-          'This user has been disabled. Please contact support for help.',
+          'Этот пользователь отключен, пожалуйста, обратитесь в поддержку',
         );
       case 'user-not-found':
         return const LogInWithEmailAndPasswordFailure(
-          'Email is not found, please create an account.',
+          'Пользователь не найден, пожалуйста зарегистрируйтесь',
         );
       case 'wrong-password':
         return const LogInWithEmailAndPasswordFailure(
-          'Incorrect password, please try again.',
+          'Неверный пароль, попробуйте еще раз',
         );
       default:
         return const LogInWithEmailAndPasswordFailure();
@@ -105,35 +105,35 @@ class LogInWithGoogleFailure implements Exception {
     switch (code) {
       case 'account-exists-with-different-credential':
         return const LogInWithGoogleFailure(
-          'Account exists with different credentials.',
+          'Учетная запись уже существует, с другими учетными данными',
         );
       case 'invalid-credential':
         return const LogInWithGoogleFailure(
-          'The credential received is malformed or has expired.',
+          'Полученные учетные данные неверны или срок их действия истек.',
         );
       case 'operation-not-allowed':
         return const LogInWithGoogleFailure(
-          'Operation is not allowed.  Please contact support.',
+          'Операция невозможна, пожалуйста, обратитесь в поддержку',
         );
       case 'user-disabled':
         return const LogInWithGoogleFailure(
-          'This user has been disabled. Please contact support for help.',
+          'Данный пользователь отключен, пожалуйста, обратитесь в поддержку',
         );
       case 'user-not-found':
         return const LogInWithGoogleFailure(
-          'Email is not found, please create an account.',
+          'Пользователь не найден, пожалуйста, зарегистрируйтесь',
         );
       case 'wrong-password':
         return const LogInWithGoogleFailure(
-          'Incorrect password, please try again.',
+          'Неверный пароль, попробуйте еще раз',
         );
       case 'invalid-verification-code':
         return const LogInWithGoogleFailure(
-          'The credential verification code received is invalid.',
+          'Полученный код подтверждения учетных данных недействителен',
         );
       case 'invalid-verification-id':
         return const LogInWithGoogleFailure(
-          'The credential verification ID received is invalid.',
+          'Полученный идентификатор для проверки учетных данных недействителен',
         );
       default:
         return const LogInWithGoogleFailure();
@@ -276,6 +276,12 @@ class AuthenticationRepository {
 extension on firebase_auth.User {
   /// Maps a [firebase_auth.User] into a [User].
   User get toUser {
-    return User(id: uid, email: email, name: displayName, photo: photoURL);
+    return User(
+      id: uid,
+      email: email,
+      name: displayName,
+      exchangeName: exchangeName,
+      exchangeAddres: exchangeAddres,
+    );
   }
 }

@@ -23,26 +23,31 @@ class LoginForm extends StatelessWidget {
         }
       },
       child: Align(
-        alignment: const Alignment(0, -1 / 3),
+        alignment: const Alignment(0, -3 / 3),
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                'assets/logo_ball.png',
-                height: 120,
-              ),
-              const SizedBox(height: 16),
-              _EmailInput(),
-              const SizedBox(height: 8),
-              _PasswordInput(),
-              const SizedBox(height: 8),
-              _LoginButton(),
-              const SizedBox(height: 8),
-              _GoogleLoginButton(),
-              const SizedBox(height: 4),
-              _SignUpButton(),
-            ],
+          child: Container(
+            padding: const EdgeInsets.all(25),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  child: Image.asset(
+                    'assets/logo_full.png',
+                    width: 280,
+                  ),
+                ),
+                const SizedBox(height: 35),
+                _EmailInput(),
+                const SizedBox(height: 8),
+                _PasswordInput(),
+                const SizedBox(height: 8),
+                _LoginButton(),
+                const SizedBox(height: 8),
+                _GoogleLoginButton(),
+                const SizedBox(height: 8),
+                _SignUpButton(),
+              ],
+            ),
           ),
         ),
       ),
@@ -64,7 +69,7 @@ class _EmailInput extends StatelessWidget {
             labelText: 'email',
             helperText: '',
             errorText:
-                state.email.displayError != null ? 'invalid email' : null,
+                state.email.displayError != null ? 'Неверный email' : null,
           ),
         );
       },
@@ -84,10 +89,10 @@ class _PasswordInput extends StatelessWidget {
               context.read<LoginCubit>().passwordChanged(password),
           obscureText: true,
           decoration: InputDecoration(
-            labelText: 'password',
+            labelText: 'Пароль',
             helperText: '',
             errorText:
-                state.password.displayError != null ? 'invalid password' : null,
+                state.password.displayError != null ? 'Неверный пароль' : null,
           ),
         );
       },
@@ -106,14 +111,16 @@ class _LoginButton extends StatelessWidget {
                 key: const Key('loginForm_continue_raisedButton'),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  backgroundColor: const Color(0xFFFFD600),
+                  backgroundColor: Color.fromARGB(255, 10, 135, 200),
                 ),
                 onPressed: state.isValid
                     ? () => context.read<LoginCubit>().logInWithCredentials()
                     : null,
-                child: const Text('LOGIN'),
+                child: const Text('ВОЙТИ',
+                    style:
+                        TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
               );
       },
     );
@@ -127,7 +134,7 @@ class _GoogleLoginButton extends StatelessWidget {
     return ElevatedButton.icon(
       key: const Key('loginForm_googleLogin_raisedButton'),
       label: const Text(
-        'SIGN IN WITH GOOGLE',
+        'ВОЙТИ С GOOGLE',
         style: TextStyle(color: Colors.white),
       ),
       style: ElevatedButton.styleFrom(
@@ -150,7 +157,7 @@ class _SignUpButton extends StatelessWidget {
       key: const Key('loginForm_createAccount_flatButton'),
       onPressed: () => Navigator.of(context).push<void>(SignUpPage.route()),
       child: Text(
-        'CREATE ACCOUNT',
+        'РЕГИСТРАЦИЯ',
         style: TextStyle(color: theme.primaryColor),
       ),
     );

@@ -10,11 +10,17 @@ final theme = ThemeData(
   colorScheme: const ColorScheme.light(
     primary: Color.fromARGB(255, 10, 135, 200),
     secondary: Color.fromARGB(255, 75, 89, 162),
-    background: Color.fromARGB(255, 255, 255, 255),
+    background: Color.fromARGB(255, 217, 223, 227),
+    outline: Color.fromARGB(255, 75, 89, 162),
   ),
   inputDecorationTheme: InputDecorationTheme(
+    floatingLabelStyle: TextStyle(color: Color.fromARGB(255, 10, 135, 200)),
+    labelStyle: TextStyle(
+      color: Color.fromARGB(255, 75, 89, 162),
+      fontSize: 16,
+    ),
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(20),
     ),
   ),
 );
