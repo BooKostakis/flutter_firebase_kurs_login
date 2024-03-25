@@ -1,0 +1,7 @@
+#Sun Mar 24 17:23:06 MSK 2024
+base.0=G\:\\_PROGRAMMING_WORK_\\Flutter\\projects\\flutter_firebase_kurs_login\\android\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+base.1=G\:\\_PROGRAMMING_WORK_\\Flutter\\projects\\flutter_firebase_kurs_login\\android\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes2.dex
+path.0=classes.dex
+path.1=classes2.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex

@@ -150,10 +150,9 @@ class _ExchangeName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpCubit, SignUpState>(
-      buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return TextField(
-          key: const Key('signUpForm_emailInput_textField'),
+          key: const Key('signUpForm_exchangeNameInput_textField'),
           onChanged: (name) => context.read<SignUpCubit>().emailChanged(name),
           keyboardType: TextInputType.name,
           decoration: InputDecoration(
@@ -170,10 +169,9 @@ class _ExchangeAdress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpCubit, SignUpState>(
-      buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return TextField(
-          key: const Key('signUpForm_adressInput_textField'),
+          key: const Key('signUpForm_addresInput_textField'),
           onChanged: (adress) =>
               context.read<SignUpCubit>().emailChanged(adress),
           keyboardType: TextInputType.streetAddress,
