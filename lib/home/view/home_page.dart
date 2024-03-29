@@ -13,9 +13,13 @@ class HomePage extends StatelessWidget {
     final user = context.select((AppBloc bloc) => bloc.state.user);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text(
+          'Вы авторизованы!',
+          style: TextStyle(color: Colors.white),
+        ),
         actions: <Widget>[
           IconButton(
+            color: Colors.white,
             key: const Key('homePage_logout_iconButton'),
             icon: const Icon(Icons.exit_to_app),
             onPressed: () {
@@ -33,7 +37,11 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 4),
             Text(user.email ?? '', style: textTheme.titleLarge),
             const SizedBox(height: 4),
-            Text(user.name ?? '', style: textTheme.headlineSmall),
+            Text(user.exchangeName ?? 'Нет название обменного пункта',
+                style: textTheme.headlineSmall),
+            const SizedBox(height: 4),
+            Text(user.exchangeName ?? 'Нет Адреса обменного пункта',
+                style: textTheme.headlineSmall),
           ],
         ),
       ),

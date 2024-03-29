@@ -49,28 +49,6 @@ class SignUpForm extends StatelessWidget {
   }
 }
 
-class _EmailInput extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SignUpCubit, SignUpState>(
-      buildWhen: (previous, current) => previous.email != current.email,
-      builder: (context, state) {
-        return TextField(
-          key: const Key('signUpForm_emailInput_textField'),
-          onChanged: (email) => context.read<SignUpCubit>().emailChanged(email),
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            labelText: 'email',
-            helperText: '',
-            errorText:
-                state.email.displayError != null ? 'Неверный email' : null,
-          ),
-        );
-      },
-    );
-  }
-}
-
 class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -139,8 +117,33 @@ class _SignUpButton extends StatelessWidget {
                 onPressed: state.isValid
                     ? () => context.read<SignUpCubit>().signUpFormSubmitted()
                     : null,
-                child: const Text('РЕГИСТРАЦИЯ'),
+                child: const Text(
+                  'РЕГИСТРАЦИЯ',
+                  style: TextStyle(color: Colors.white),
+                ),
               );
+      },
+    );
+  }
+}
+
+class _EmailInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpCubit, SignUpState>(
+      buildWhen: (previous, current) => previous.email != current.email,
+      builder: (context, state) {
+        return TextField(
+          key: const Key('signUpForm_emailInput_textField'),
+          onChanged: (email) => context.read<SignUpCubit>().emailChanged(email),
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+            labelText: 'email',
+            helperText: '',
+            errorText:
+                state.email.displayError != null ? 'Неверный email' : null,
+          ),
+        );
       },
     );
   }
@@ -150,10 +153,11 @@ class _ExchangeName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpCubit, SignUpState>(
+      buildWhen: (previous, current) =>
+          previous.exchangeName != current.exchangeName,
       builder: (context, state) {
         return TextField(
           key: const Key('signUpForm_exchangeNameInput_textField'),
-          onChanged: (name) => context.read<SignUpCubit>().emailChanged(name),
           keyboardType: TextInputType.name,
           decoration: InputDecoration(
             labelText: 'Укажите название обменного пункта',
@@ -169,11 +173,11 @@ class _ExchangeAdress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpCubit, SignUpState>(
+      buildWhen: (previous, current) =>
+          previous.exchangeAddres != current.exchangeAddres,
       builder: (context, state) {
         return TextField(
           key: const Key('signUpForm_addresInput_textField'),
-          onChanged: (adress) =>
-              context.read<SignUpCubit>().emailChanged(adress),
           keyboardType: TextInputType.streetAddress,
           decoration: InputDecoration(
             labelText: 'Укажите адрес обменного пункта',
