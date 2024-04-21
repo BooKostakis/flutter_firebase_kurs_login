@@ -280,8 +280,6 @@ extension on firebase_auth.User {
       id: uid,
       email: email,
       name: displayName,
-      exchangeName: exchangeName,
-      exchangeAddres: exchangeAddres,
     );
   }
 }
