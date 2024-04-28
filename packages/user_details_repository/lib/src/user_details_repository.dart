@@ -16,18 +16,41 @@ class UserDetailsRepository {
 
   final cloud_firestore.FirebaseFirestore _cloudFirestore;
 
-  Future<UserDetails> getUserDetails(String userId) async {
-    userId = 'tArQGKdwSeUAiIMFCQLTWJSfeo43';
+  Future<ExchangeUserDetails> getExchangeUserDetails(String userId) async {
     final firebaseUser = await _cloudFirestore
-        .collection('User_details')
+        .collection('exchange_user_details')
+        .where('user_id', isEqualTo: userId)
+        .get();
+    return firebaseUser.docs
+        .map((firebaseUserDoc) => ExchangeUserDetails(
+              id: firebaseUserDoc.id,
+              userId: firebaseUserDoc['user_id'],
+              exchangeName: firebaseUserDoc['exchange_name'],
+              exchangeAddress: firebaseUserDoc['exchange_address'],
+            ))
+        .first;
+  }
+
+  Future<bool> getUserType(String userId) async {
+    final firebaseUserType = await _cloudFirestore
+        .collection('user_type')
+        .where('user_id', isEqualTo: userId)
+        .get();
+    return firebaseUserType.docs
+        .map((firebaseUserTypeDoc) => firebaseUserTypeDoc['is_exchange'])
+        .first;
+  }
+
+  Future<UserDetails> getUserDetails(String userId) async {
+    final firebaseUser = await _cloudFirestore
+        .collection('user_details')
         .where('user_id', isEqualTo: userId)
         .get();
     return firebaseUser.docs
         .map((firebaseUserDoc) => UserDetails(
               id: firebaseUserDoc.id,
               userId: firebaseUserDoc['user_id'],
-              exchangeName: firebaseUserDoc['exchangeName'],
-              exchangeAddres: firebaseUserDoc['exchangeAddres'],
+              pushNotifications: firebaseUserDoc['push_notifications'],
             ))
         .first;
   }

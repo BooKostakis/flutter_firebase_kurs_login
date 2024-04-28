@@ -27,6 +27,13 @@ class AppRouter {
       appBloc.stream,
     ]),
     debugLogDiagnostics: true,
+    redirect: (context, state) {
+      // final String location = state.uri.toString();
+
+      final authRedirectRoute =
+          appBloc.state.status == AppStatus.authenticated ? null : '/login';
+      return authRedirectRoute;
+    },
     routes: [
       GoRoute(
         path: '/',
@@ -57,13 +64,6 @@ class AppRouter {
         builder: (context, state) => LoginPage(),
       ),
     ],
-    redirect: (context, state) {
-      // final String location = state.uri.toString();
-
-      final authRedirectRoute =
-          appBloc.state.status == AppStatus.authenticated ? null : '/login';
-      return authRedirectRoute;
-    },
   );
 }
 

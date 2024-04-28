@@ -1,11 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-class UserDetails extends Equatable {
+class ExchangeUserDetails extends Equatable {
   /// {@macro user}
-  const UserDetails({
+  const ExchangeUserDetails({
     required this.id,
     required this.userId,
-    this.pushNotifications,
+    this.exchangeName,
+    this.exchangeAddress,
   });
 
   /// The current user's id.
@@ -15,12 +16,16 @@ class UserDetails extends Equatable {
   final String userId;
 
   /// The current exchange name.
-  final bool? pushNotifications;
+  final String? exchangeName;
+
+  /// The current exchange address.
+  final String? exchangeAddress;
 
   @override
   List<Object?> get props => [
         id,
         userId,
-        pushNotifications,
+        exchangeName,
+        exchangeAddress,
       ];
 }

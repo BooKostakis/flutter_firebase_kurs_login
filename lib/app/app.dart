@@ -1,9 +1,9 @@
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_kurs_login/app/block/app_bloc.dart';
-import 'package:flutter_firebase_kurs_login/routes/routes.dart';
+import 'package:flutter_firebase_kurs_login/app/bloc/app_bloc.dart';
+import 'package:flutter_firebase_kurs_login/routes/app_router.dart';
+
 import 'package:flutter_firebase_kurs_login/theme.dart';
 
 class App extends StatelessWidget {
@@ -19,7 +19,7 @@ class App extends StatelessWidget {
     return RepositoryProvider.value(
       value: _authenticationRepository,
       child: BlocProvider(
-        create: (_) => AppBloc(
+        create: (context) => AppBloc(
           authenticationRepository: _authenticationRepository,
         ),
         child: const AppView(),
@@ -33,12 +33,9 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRouter(BlocProvider.of<AppBloc>(context)).router,
       theme: theme,
-      home: FlowBuilder<AppStatus>(
-        state: context.select((AppBloc bloc) => bloc.state.status),
-        onGeneratePages: onGenerateAppViewPages,
-      ),
     );
   }
 }

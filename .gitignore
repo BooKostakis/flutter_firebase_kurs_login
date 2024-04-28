@@ -74,3 +74,4 @@ pubspec_overrides.yaml
 *.jks
 *.pepk
 key*.properties
+scheme.cdr
