@@ -9,6 +9,8 @@ environment:
 dependencies:
   authentication_repository:
     path: packages/authentication_repository
+  user_details_repository:
+    path: packages/user_details_repository
   bloc: ^8.1.0
   equatable: ^2.0.3
   firebase_core: ^2.27.1
@@ -20,15 +22,19 @@ dependencies:
   form_inputs:
     path: packages/form_inputs
   formz: ^0.6.0
+  freezed: ^2.5.2
   go_router: ^13.2.4
   google_fonts: ^6.2.1
   meta: ^1.11.0
+  freezed_annotation: ^2.4.1
+  
 
 dev_dependencies:
   bloc_test: ^9.0.0
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.0
+  build_runner: ^2.4.9
 
 flutter:
   uses-material-design: true

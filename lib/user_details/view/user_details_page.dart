@@ -1,8 +1,8 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_kurs_login/sign_up_user_details/cubit/sign_up_user_details_cubit.dart';
-import 'package:flutter_firebase_kurs_login/sign_up_user_details/cubit/sign_up_user_details_form.dart';
+import 'package:flutter_firebase_kurs_login/user_details/cubit/user_details_cubit.dart';
+import 'package:flutter_firebase_kurs_login/user_details/view/user_details_form.dart';
 
 class SignUpUserDetailsPage extends StatelessWidget {
   const SignUpUserDetailsPage({super.key});

@@ -16,13 +16,13 @@ class UserDetailsRepository {
 
   final cloud_firestore.FirebaseFirestore _cloudFirestore;
 
-  Future<ExchangeUserDetails> getExchangeUserDetails(String userId) async {
+  Future<UserDetails> getUserDetails(String userId) async {
     final firebaseUser = await _cloudFirestore
         .collection('exchange_user_details')
         .where('user_id', isEqualTo: userId)
         .get();
     return firebaseUser.docs
-        .map((firebaseUserDoc) => ExchangeUserDetails(
+        .map((firebaseUserDoc) => UserDetails(
               id: firebaseUserDoc.id,
               userId: firebaseUserDoc['user_id'],
               exchangeName: firebaseUserDoc['exchange_name'],
@@ -38,20 +38,6 @@ class UserDetailsRepository {
         .get();
     return firebaseUserType.docs
         .map((firebaseUserTypeDoc) => firebaseUserTypeDoc['is_exchange'])
-        .first;
-  }
-
-  Future<UserDetails> getUserDetails(String userId) async {
-    final firebaseUser = await _cloudFirestore
-        .collection('user_details')
-        .where('user_id', isEqualTo: userId)
-        .get();
-    return firebaseUser.docs
-        .map((firebaseUserDoc) => UserDetails(
-              id: firebaseUserDoc.id,
-              userId: firebaseUserDoc['user_id'],
-              pushNotifications: firebaseUserDoc['push_notifications'],
-            ))
         .first;
   }
 }

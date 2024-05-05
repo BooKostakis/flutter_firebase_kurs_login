@@ -6,7 +6,7 @@ import 'package:flutter_firebase_kurs_login/app/bloc/app_bloc.dart';
 import 'package:flutter_firebase_kurs_login/home/view/home_page.dart';
 import 'package:flutter_firebase_kurs_login/login/view/login_page.dart';
 import 'package:flutter_firebase_kurs_login/sign_up/view/sign_up_page.dart';
-import 'package:flutter_firebase_kurs_login/sign_up_user_details/view/sign_up_user_details_page.dart';
+import 'package:flutter_firebase_kurs_login/user_details/view/user_details_page.dart';
 import 'package:go_router/go_router.dart';
 
 enum AppRoute {
