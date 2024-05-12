@@ -24,7 +24,7 @@ class UserDetailsState with _$UserDetailsState {
 //     this.isValid = false,
 //     this.errorMessage,
 //     this.exchangeName,
-//     this.exchangeAddres,
+//     this.exchangeAddress,
 //   });
 
 //   final Email email;
@@ -34,7 +34,7 @@ class UserDetailsState with _$UserDetailsState {
 //   final bool isValid;
 //   final String? errorMessage;
 //   final String? exchangeName;
-//   final String? exchangeAddres;
+//   final String? exchangeAddress;
 
 //   @override
 //   List<Object?> get props => [
@@ -45,7 +45,7 @@ class UserDetailsState with _$UserDetailsState {
 //         isValid,
 //         errorMessage,
 //         exchangeName,
-//         exchangeAddres,
+//         exchangeAddress,
 //       ];
 
 //   SignUpUserDetailsState copyWith({
@@ -59,7 +59,7 @@ class UserDetailsState with _$UserDetailsState {
 //     return SignUpUserDetailsState(
 //       email: email ?? this.email,
 //       exchangeName: exchangeName ?? this.exchangeName,
-//       exchangeAddres: exchangeAddres ?? this.exchangeAddres,
+//       exchangeAddress: exchangeAddress ?? this.exchangeAddress,
 //       password: password ?? this.password,
 //       confirmedPassword: confirmedPassword ?? this.confirmedPassword,
 //       status: status ?? this.status,

@@ -37,10 +37,6 @@ class SignUpForm extends StatelessWidget {
             const SizedBox(height: 8),
             _ConfirmPasswordInput(),
             const SizedBox(height: 8),
-            _ExchangeName(),
-            const SizedBox(height: 8),
-            _ExchangeAdress(),
-            const SizedBox(height: 8),
             _SignUpButton(),
           ],
         ),
@@ -142,46 +138,6 @@ class _EmailInput extends StatelessWidget {
             helperText: '',
             errorText:
                 state.email.displayError != null ? 'Неверный email' : null,
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _ExchangeName extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SignUpCubit, SignUpState>(
-      buildWhen: (previous, current) =>
-          previous.exchangeName != current.exchangeName,
-      builder: (context, state) {
-        return TextField(
-          key: const Key('signUpForm_exchangeNameInput_textField'),
-          keyboardType: TextInputType.name,
-          decoration: InputDecoration(
-            labelText: 'Укажите название обменного пункта',
-            helperText: '',
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _ExchangeAdress extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SignUpCubit, SignUpState>(
-      buildWhen: (previous, current) =>
-          previous.exchangeAddres != current.exchangeAddres,
-      builder: (context, state) {
-        return TextField(
-          key: const Key('signUpForm_addresInput_textField'),
-          keyboardType: TextInputType.streetAddress,
-          decoration: InputDecoration(
-            labelText: 'Укажите адрес обменного пункта',
-            helperText: '',
           ),
         );
       },

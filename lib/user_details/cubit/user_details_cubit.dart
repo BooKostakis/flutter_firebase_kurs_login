@@ -16,14 +16,14 @@ class UserDetailsCubit extends Cubit<UserDetailsState> {
       : _userDetailsRepository = userDetailsRepository,
         _appBloc = appBloc,
         super(const UserDetailsState.initial()) {
-        _appBlocSubscription = _appBloc.stream.listen(
-      (appState) => switch (appState.status) {
-       appStatus.success => updateFilteredExchangeOffices(
-            exchangeOffices: appState.exchangeOffices,
-          ),
-        _ => null,};
-
-        }
+    _appBlocSubscription =
+        _appBloc.stream.listen((appState) => switch (appState.status) {
+              appStatus.success => updateFilteredExchangeOffices(
+                  exchangeOffices: appState.exchangeOffices,
+                ),
+              _ => null,
+            });
+  }
 
   final UserDetailsRepository _userDetailsRepository;
   final AppBloc _appBloc;
@@ -34,11 +34,12 @@ class UserDetailsCubit extends Cubit<UserDetailsState> {
   Future<void> close() {
     _appBlocSubscription.cancel();
     return super.close();
-}
+  }
 
   Future<UserDetailsUi> fetchUserDetails() async {
     try {
-      final userDetails = _userDetailsRepository.getUserDetails(userId);
+      final userDetails =
+          _userDetailsRepository.getUserDetails('tArQGKdwSeUAiIMFCQLTWJSfeo43');
     } catch (e) {}
   }
 }

@@ -18,7 +18,7 @@ class UserDetailsRepository {
 
   Future<UserDetails> getUserDetails(String userId) async {
     final firebaseUser = await _cloudFirestore
-        .collection('exchange_user_details')
+        .collection('user_details')
         .where('user_id', isEqualTo: userId)
         .get();
     return firebaseUser.docs
